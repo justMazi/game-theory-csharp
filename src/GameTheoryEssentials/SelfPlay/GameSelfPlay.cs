@@ -1,5 +1,6 @@
 ﻿using GameTheoryEssentials.Matrix;
 using GameTheoryEssentials.NormalFormGames;
+using Python.Runtime;
 
 namespace GameTheoryEssentials.SelfPlay;
 
@@ -23,7 +24,7 @@ public class GameSelfPlay
         PayoutMatrix = Matrix2D.Create(matrixData);
     }
     
-    public void Play(int numberOfTurns = 20, bool averagedSelfPlay = false)
+    public double[] Play(int numberOfTurns = 20, bool averagedSelfPlay = false)
     {
         var random = new Random();
         var actionIndexLimit = PayoutMatrix.Shape.Rows;
@@ -32,6 +33,8 @@ public class GameSelfPlay
         
         _rowPlayerActionIndex.Add(randomRowStrategy);
         _colPlayerActionIndex.Add(randomColStrategy);
+
+        var exploitabilities = new List<double>();
 
         for (int i = 0; i < numberOfTurns; i++)
         {
@@ -52,8 +55,10 @@ public class GameSelfPlay
             _colPlayerActionIndex.Add(colStrat);
 
             var exploitability = MatrixGameEvaluator2D.ComputeExploitability(PayoutMatrix, avgRowStrat, avgColStrat);
-            Console.WriteLine(exploitability);
+            exploitabilities.Add(exploitability);
         }
+        
+        return exploitabilities.ToArray();
     }
 
     static RowStrategy AverageRowStrategy(List<RowStrategy> rowPlayerActionIndex)
@@ -99,5 +104,18 @@ public class GameSelfPlay
     static void DisplayVector(double[] vector)
     {
         Console.WriteLine("[" + string.Join(", ", vector) + "]");
+    }
+
+    static void Plot(dynamic data)
+    {
+        using (Py.GIL()) // Acquire the Python GIL (Global Interpreter Lock)
+        {
+            dynamic matplotlib = Py.Import("matplotlib.pyplot");
+             data = new double[] { 1, 2, 3, 4, 5 };
+
+            // Plot the data
+            matplotlib.plot(data);
+            matplotlib.show();
+        }
     }
 }
