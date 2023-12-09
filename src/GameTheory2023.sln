@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTheory2023", "GameTheory2023\GameTheory2023.csproj", "{021E1DF8-63B9-4678-A44F-DFF17CDC1B4B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameTheoryEssentials", "GameTheoryEssentials\GameTheoryEssentials.csproj", "{CEC65F35-C8FC-4000-BB35-79116CF0AB8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{32F852B8-0A3D-4286-AD95-3F8EEB20F8DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{021E1DF8-63B9-4678-A44F-DFF17CDC1B4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{021E1DF8-63B9-4678-A44F-DFF17CDC1B4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{021E1DF8-63B9-4678-A44F-DFF17CDC1B4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{021E1DF8-63B9-4678-A44F-DFF17CDC1B4B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEC65F35-C8FC-4000-BB35-79116CF0AB8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEC65F35-C8FC-4000-BB35-79116CF0AB8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEC65F35-C8FC-4000-BB35-79116CF0AB8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEC65F35-C8FC-4000-BB35-79116CF0AB8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32F852B8-0A3D-4286-AD95-3F8EEB20F8DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32F852B8-0A3D-4286-AD95-3F8EEB20F8DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32F852B8-0A3D-4286-AD95-3F8EEB20F8DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32F852B8-0A3D-4286-AD95-3F8EEB20F8DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
