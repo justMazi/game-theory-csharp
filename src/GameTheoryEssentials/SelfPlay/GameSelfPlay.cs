@@ -23,7 +23,7 @@ public class GameSelfPlay
         PayoutMatrix = Matrix2D.Create(matrixData);
     }
     
-    public void Play(int numberOfTurns = 700)
+    public void Play(int numberOfTurns = 20, bool averagedSelfPlay = false)
     {
         var random = new Random();
         var actionIndexLimit = PayoutMatrix.Shape.Rows;
@@ -35,14 +35,22 @@ public class GameSelfPlay
 
         for (int i = 0; i < numberOfTurns; i++)
         {
-            var naiveRowStrat = MatrixGameEvaluator2D.GetBestResponse(PayoutMatrix, _colPlayerActionIndex.Last());
-            var naiveColStrat = MatrixGameEvaluator2D.GetBestResponse(PayoutMatrix, _rowPlayerActionIndex.Last());
+            var rowStrat = MatrixGameEvaluator2D.GetBestResponse(PayoutMatrix, _colPlayerActionIndex.Last());
+            var colStrat = MatrixGameEvaluator2D.GetBestResponse(PayoutMatrix, _rowPlayerActionIndex.Last());
 
-            _rowPlayerActionIndex.Add(naiveRowStrat);
-            _colPlayerActionIndex.Add(naiveColStrat);
             
             var avgRowStrat = AverageRowStrategy(_rowPlayerActionIndex);
             var avgColStrat = AverageColumnStrategy(_colPlayerActionIndex);
+            
+            if (averagedSelfPlay)
+            {
+                colStrat = MatrixGameEvaluator2D.GetBestResponse(PayoutMatrix, avgRowStrat);
+                rowStrat = MatrixGameEvaluator2D.GetBestResponse(PayoutMatrix, avgColStrat);
+            }
+            
+            _rowPlayerActionIndex.Add(rowStrat);
+            _colPlayerActionIndex.Add(colStrat);
+
             var exploitability = MatrixGameEvaluator2D.ComputeExploitability(PayoutMatrix, avgRowStrat, avgColStrat);
             Console.WriteLine(exploitability);
         }
